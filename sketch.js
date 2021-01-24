@@ -173,7 +173,7 @@ function mouseReleased(){
 function keyPressed(){
     if(keyCode === 32){
 		Matter.Body.setPosition(stone.body, {x: 235 , y: 420});
-        band.attach(stone);
+        band.attach(stone.body);
     }
 }
 
