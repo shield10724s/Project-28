@@ -8,18 +8,19 @@ class Mango{
         this.x=x;
         this.y=y;
         this.r=r;
-        this.body = Bodies.circle(this.x, this. y,this.r/2 ,options);
+        this.image = loadImage("Images/mango.png")
+        this.body = Bodies.circle(this.x, this. y,this.r ,options);
         World.add(world, this.body);
     }
 
     display(){
-        var paper_pos = this.body.position;
+        var mangoPos = this.body.position;
+        var angle = this.body.angle;
         push();
-        translate(paper_pos.x, paper_pos.y);
-        rectMode(CENTER);
-        strokeWeight(3);
-        fill('white');
-        ellipse(0,0,this.r,this.r);
+        translate(mangoPos.x, mangoPos.y);
+        rotate(angle);
+        imageMode(CENTER);
+        image(this.image,0,0,this.r*2,this.r*2);
         pop();
     }
 }

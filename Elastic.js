@@ -3,7 +3,7 @@ class Elastic{
         var options = {
             bodyA : bodyA,
             pointB : pointB,
-            length : 10,
+            length : 1,
             stiffness : 0.004
         }
         this.pointB = pointB;

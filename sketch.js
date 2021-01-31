@@ -6,24 +6,19 @@ const Constraint = Matter.Constraint;
 
 var ground
 var boy,boyImg;
-var tree,ts,tImg;
-var m1,m2,m3,m4,m5,m6,m7,m8,m9,m10, mangoImg;
-var ms1,ms2,ms3,ms4,ms5,ms5,ms7,ms8,ms9,ms10;
+var tree;
+var m1,m2,m3,m4,m5,m6,m7,m8,m9,m10;
 var launcher;
 var stone,stoneSprite,stoneImg;
 var band;
 
 function preload()
 {
-	boyImg = loadImage('Plucking mangoes/boy.png');
-	tImg = loadImage('Plucking mangoes/tree.png');
-	mangoImg = loadImage('Plucking mangoes/mango.png');
-	stoneImg = loadImage('Plucking mangoes/stone.png');
+	boyImg = loadImage('Images/boy.png');
 }
 
 function setup() {
 	createCanvas(1000, 500);
-
 
 	engine = Engine.create();
 	world = engine.world;
@@ -32,60 +27,10 @@ function setup() {
 	boy.addImage(boyImg);
 	boy.scale=0.08;
 
-	ts = createSprite(750,260,100,300);
-	ts.addImage(tImg);
-	ts.scale=0.33;
-	ts.depth=-1;
-
-	ms1 = createSprite(100, 200,20,20);
-	ms1.addImage(mangoImg);
-	ms1.scale=0.08;
-
-	ms2 = createSprite(100, 200,20,20);
-	ms2.addImage(mangoImg);
-	ms2.scale=0.08;
-
-	ms3 = createSprite(100, 200,20,20);
-	ms3.addImage(mangoImg);
-	ms3.scale=0.08;
-
-	ms4 = createSprite(100, 200,20,20);
-	ms4.addImage(mangoImg);
-	ms4.scale=0.08;
-
-	ms5 = createSprite(100, 200,20,20);
-	ms5.addImage(mangoImg);
-	ms5.scale=0.08;
-
-	ms6 = createSprite(100, 200,20,20);
-	ms6.addImage(mangoImg);
-	ms6.scale=0.08;
-
-	ms7 = createSprite(100, 200,20,20);
-	ms7.addImage(mangoImg);
-	ms7.scale=0.08;
-
-	ms8 = createSprite(100, 200,20,20);
-	ms8.addImage(mangoImg);
-	ms8.scale=0.08;
-
-	ms9 = createSprite(100, 200,20,20);
-	ms9.addImage(mangoImg);
-	ms9.scale=0.08;
-
-	ms10 = createSprite(100, 200,20,20);
-	ms10.addImage(mangoImg);
-	ms10.scale=0.08;
-
-	
-
-	stoneSprite = createSprite(0,0,10,10);
-	stoneSprite.addImage(stoneImg);
-	stoneSprite.scale=0.06;
 
 	//Create the Bodies Here.
 	ground = new Ground(500,450,1000,10);
-	tree = new Tree(800,300,100,300);
+	tree = new Tree(750,250,310,410);
 
 	m1 = new Mango(800,150,30);
 	m2 = new Mango(750,120,30);
@@ -110,38 +55,21 @@ function draw() {
   rectMode(CENTER);
   background('lightblue');
 
-  ms1.x = m1.body.position.x;
-  ms1.y = m1.body.position.y;
+  ground.display();
+  stone.display();
+  band.display();
+  tree.display();
+  m1.display();
+  m2.display();
+  m3.display();
+  m4.display();
+  m5.display();
+  m6.display();
+  m7.display();
+  m8.display();
+  m9.display();
+  m10.display();
 
-  ms2.x = m2.body.position.x;
-  ms2.y = m2.body.position.y;
-
-  ms3.x = m3.body.position.x;
-  ms3.y = m3.body.position.y;
-
-  ms4.x = m4.body.position.x;
-  ms4.y = m4.body.position.y;
-
-  ms5.x = m5.body.position.x;
-  ms5.y = m5.body.position.y;
-
-  ms6.x = m6.body.position.x;
-  ms6.y = m6.body.position.y;
-
-  ms7.x = m7.body.position.x;
-  ms7.y = m7.body.position.y;
-  
-  ms8.x = m8.body.position.x;
-  ms8.y = m8.body.position.y;
-
-  ms9.x = m9.body.position.x;
-  ms9.y = m9.body.position.y;
-
-  ms10.x = m10.body.position.x;
-  ms10.y = m10.body.position.y;
-
-  stoneSprite.x = stone.body.position.x;
-  stoneSprite.y = stone.body.position.y;
 
   detectCollision(stone,m1);
   detectCollision(stone,m2);
@@ -153,10 +81,6 @@ function draw() {
   detectCollision(stone,m8);
   detectCollision(stone,m9);
   detectCollision(stone,m10);
-
-  ground.display();
-  stone.display();
-  band.display();
 
   drawSprites();
  
@@ -178,11 +102,11 @@ function keyPressed(){
 }
 
 function detectCollision(lstone,lmango){
-	mbp = lmango.body.position;
-	sbp = lstone.body.position;
+	mangoBodyPosition = lmango.body.position;
+	stoneBodyPosition = lstone.body.position;
 
-	var distance = dist(sbp.x, sbp.y, mbp.x, mbp.y);
-	if(distance<=lmango.r+lstone.r){
-		Matter.Body.setStatic(lmango,false);
-	}
+	var distance = dist(stoneBodyPosition.x, stoneBodyPosition.y, mangoBodyPosition.x, mangoBodyPosition.y);
+		if(distance<=lmango.r+lstone.r){
+			Matter.Body.setStatic(lmango,false);
+		}
 }
